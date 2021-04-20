@@ -1,49 +1,64 @@
-$(function () {
-    // Preloader
-    $(function () {
-        $("#preloader-active").delay(450).fadeOut("slow");
+$(document).ready(function () {
+    var slider = $(".content-slider");
+
+    slider.owlCarousel({
+        loop: true,
+        margin: 0,
+        items: 1,
+        dots: false,
+        smartSpeed: 1200,
+        autoplay: true,
+        mouseDrag: false,
+        touchDrag: false,
     });
 
-    // Background Set
-    $(".set-bg").each(function () {
-        var bg = $(this).data("setbg");
-        $(this).css("background-image", "url(" + bg + ")");
+    // mobile_menu
+    var menu = $("ul#navigation");
+
+    if (menu.length) {
+        menu.slicknav({
+            prependTo: ".mobile_menu",
+            closedSymbol: "+",
+            openedSymbol: "-",
+        });
+    }
+
+    /* Custom Sticky Menu  */
+    $(window).on("scroll", function () {
+        var scroll = $(window).scrollTop();
+        if (scroll < 245) {
+            $(".header-sticky").removeClass("sticky-bar");
+        } else {
+            $(".header-sticky").addClass("sticky-bar");
+        }
     });
 
     $(window).on("scroll", function () {
         var scroll = $(window).scrollTop();
-
-        if (scroll >= 80) {
-            $("#site-header").addClass("nav-fixed");
+        if (scroll < 245) {
+            $(".header-sticky").removeClass("sticky");
         } else {
-            $("#site-header").removeClass("nav-fixed");
+            $(".header-sticky").addClass("sticky");
         }
     });
 
-    $(window).on("load", function () {
-        var scroll = $(window).scrollTop();
+    // slider.on("translate.owl.carousel", function () {
+    //     const slideLayer = $("[data-animation]");
+    //     slideLayer.each(function () {
+    //         const animation_name = $(this).data("animation");
+    //         $(this)
+    //             .removeClass("animated " + animation_name)
+    //             .css("visibility", "hidden");
+    //     });
+    // });
 
-        if (scroll >= 80) {
-            $("#site-header").addClass("nav-fixed");
-        } else {
-            $("#site-header").removeClass("nav-fixed");
-        }
-    });
-});
-
-document.querySelector("#movetop").addEventListener("click", () => {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-});
-
-window.addEventListener("scroll", () => {
-    // When the user scrolls down 20px away from the top, show the button
-    if (
-        document.body.scrollTop > 250 ||
-        document.documentElement.scrollTop > 250
-    ) {
-        document.getElementById("movetop").style.display = "block";
-    } else {
-        document.getElementById("movetop").style.display = "none";
-    }
+    // slider.on("translated.owl.carousel", function () {
+    //     const slideLayer = $("[data-animation]");
+    //     slideLayer.each(function () {
+    //         const animation_name = $(this).data("animation");
+    //         $(this)
+    //             .addClass("animated " + animation_name)
+    //             .css("visibility", "visible");
+    //     });
+    // });
 });
