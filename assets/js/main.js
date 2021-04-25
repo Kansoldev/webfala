@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var slider = $(".content-slider");
+    var slider = $(".hero-images");
 
     slider.owlCarousel({
         loop: true,
@@ -12,7 +12,7 @@ $(document).ready(function () {
         touchDrag: false,
     });
 
-    // mobile_menu
+    // MOBILE MENU
     var menu = $("ul#navigation");
 
     if (menu.length) {
@@ -23,42 +23,13 @@ $(document).ready(function () {
         });
     }
 
-    /* Custom Sticky Menu  */
+    // Sticky Navigation
     $(window).on("scroll", function () {
         var scroll = $(window).scrollTop();
         if (scroll < 245) {
-            $(".header-sticky").removeClass("sticky-bar");
+            $(".main-header").removeClass("sticky-bar");
         } else {
-            $(".header-sticky").addClass("sticky-bar");
+            $(".main-header").addClass("sticky-bar");
         }
     });
-
-    $(window).on("scroll", function () {
-        var scroll = $(window).scrollTop();
-        if (scroll < 245) {
-            $(".header-sticky").removeClass("sticky");
-        } else {
-            $(".header-sticky").addClass("sticky");
-        }
-    });
-
-    // slider.on("translate.owl.carousel", function () {
-    //     const slideLayer = $("[data-animation]");
-    //     slideLayer.each(function () {
-    //         const animation_name = $(this).data("animation");
-    //         $(this)
-    //             .removeClass("animated " + animation_name)
-    //             .css("visibility", "hidden");
-    //     });
-    // });
-
-    // slider.on("translated.owl.carousel", function () {
-    //     const slideLayer = $("[data-animation]");
-    //     slideLayer.each(function () {
-    //         const animation_name = $(this).data("animation");
-    //         $(this)
-    //             .addClass("animated " + animation_name)
-    //             .css("visibility", "visible");
-    //     });
-    // });
 });
